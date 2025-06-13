@@ -1,8 +1,16 @@
 import React from "react";
 import "./ColorBox.css";
-const ColorBox = ({ color }: { color: { color: string; name: string } }) => {
+import copy from "copy-to-clipboard";
+import { Color } from "../../types/Colors";
+const ColorBox = ({ color }: { color: Color }) => {
   return (
-    <div style={{ backgroundColor: color.color }} className="ColorBox">
+    <div
+      style={{ backgroundColor: color.color }}
+      className="ColorBox"
+      onClick={() => {
+        copy(color.color);
+      }}
+    >
       <div className="copy-container">
         <div className="box-content">
           <span>{color.name}</span>

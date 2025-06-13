@@ -1,12 +1,8 @@
 import React from "react";
 import ColorBox from "../ColorBox";
 import "./Palette.css";
-interface PaletteProps {
-  colors: { name: string; color: string }[];
-  emoji: string;
-  id: string;
-  paletteName: string;
-}
+import { PaletteProps } from "../../types/Props";
+
 const Palette = (palette: PaletteProps) => {
   console.log("@@@@", palette);
   return (

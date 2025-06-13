@@ -1,1 +1,4 @@
-export const n: number = 10;
+export type Color = {
+  color: string;
+  name: string;
+};
