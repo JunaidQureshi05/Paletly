@@ -5,6 +5,7 @@ import { GeneratedPallete } from "../../types/Colors";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import ColorBox from "../ColorBox";
+import Navbar from "../Navbar";
 
 const Palette = ({ palette }: { palette: GeneratedPallete }) => {
   const [level, setLevel] = useState<number>(500);
@@ -13,17 +14,7 @@ const Palette = ({ palette }: { palette: GeneratedPallete }) => {
   return (
     <div className="Palette">
       {/* Navbar goes here */}
-      <div className="slider">
-        <Slider
-          defaultValue={level}
-          min={100}
-          max={900}
-          step={100}
-          onChangeComplete={(val: number | number[]) => {
-            setLevel(val as number);
-          }}
-        />
-      </div>
+      <Navbar level={level} setLevel={setLevel} />
 
       <div className="Palette-colors">
         {palette.colors[level].map((color) => (
