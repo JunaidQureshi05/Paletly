@@ -1,12 +1,19 @@
 import Slider from "rc-slider";
 import "./Navbar.css";
+import { MenuItem, Select } from "@mui/material";
+import { ChangeEvent } from "react";
+import { ColorFormat } from "../../types/Colors";
 
 const Navbar = ({
   level,
   setLevel,
+  colorFormat,
+  setColorFormat,
 }: {
   level: number;
   setLevel: (val: number) => void;
+  colorFormat: ColorFormat;
+  setColorFormat: (val: ColorFormat) => void;
 }) => {
   return (
     <header className="Navbar">
@@ -26,6 +33,32 @@ const Navbar = ({
             }}
           />
         </div>
+      </div>
+      <div className="select-container">
+        <Select
+          onChange={(e) => {
+            setColorFormat(e.target.value as ColorFormat);
+          }}
+          variant="standard"
+          sx={{
+            fontSize: "0.8rem",
+          }}
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                "& .MuiMenuItem-root": {
+                  fontSize: "0.8rem",
+                },
+              },
+            },
+          }}
+          displayEmpty
+          value={colorFormat}
+        >
+          <MenuItem value={"hex"}>HEX - #ffffff</MenuItem>
+          <MenuItem value={"rgb"}>RGB - rgb(255,255,255)</MenuItem>
+          <MenuItem value={"rgba"}>RGBA - rgb(255,255,255,1.0)</MenuItem>
+        </Select>
       </div>
     </header>
   );

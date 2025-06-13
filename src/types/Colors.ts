@@ -21,3 +21,9 @@ export type Palette = {
   id: string;
   paletteName: string;
 };
+
+export enum ColorFormat {
+  HEX = "hex",
+  RGB = "rgb",
+  RGBA = "rgba",
+}

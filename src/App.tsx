@@ -5,7 +5,6 @@ import Palette from "./components/Palette";
 import seedColor from "./seedColor";
 import { generatePalette } from "./utils/color";
 function App() {
-  console.log("@@@@", generatePalette(seedColor[2]));
   return (
     <div>
       <Palette palette={generatePalette(seedColor[4])} />

@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import "./ColorBox.css";
 import copy from "copy-to-clipboard";
-import { Color } from "../../types/Colors";
+import { Color, ColorFormat } from "../../types/Colors";
 import { clsx } from "../../utils/common";
-const ColorBox = ({ color }: { color: Color }) => {
+const ColorBox = ({
+  color,
+  colorFormat,
+}: {
+  color: Color;
+  colorFormat: ColorFormat;
+}) => {
   const [copied, setCopied] = useState<boolean>(false);
   const { name, id, hex } = color;
+  let value = color[colorFormat];
   return (
     <div
       style={{ backgroundColor: hex }}
       className="ColorBox"
       onClick={() => {
-        copy(hex);
+        copy(value);
         setCopied(true);
         setTimeout(() => {
           setCopied(false);
@@ -24,7 +31,7 @@ const ColorBox = ({ color }: { color: Color }) => {
       />
       <div className={clsx(["copy-message", copied && "show"])}>
         <h1>copied!</h1>
-        <p>{hex}</p>
+        <p>{value}</p>
       </div>
       <div className="copy-container">
         <div className="box-content">
