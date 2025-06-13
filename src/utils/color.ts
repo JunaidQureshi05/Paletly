@@ -1,10 +1,10 @@
 import chroma from "chroma-js";
-import { PaletteProps } from "../types/Props";
+import { GeneratedPallete, Palette } from "../types/Colors";
 
 const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
-export function generatePalette(starterPalette: PaletteProps) {
-  let newPalette: any = {
+export function generatePalette(starterPalette: Palette): GeneratedPallete {
+  let newPalette: GeneratedPallete = {
     paletteName: starterPalette.paletteName,
     id: starterPalette.id,
     emoji: starterPalette.emoji,
@@ -15,7 +15,7 @@ export function generatePalette(starterPalette: PaletteProps) {
     newPalette.colors[level] = [];
   }
   for (let color of starterPalette.colors) {
-    let scale: string[] = getScale(color.color, 10).reverse();
+    let scale: string[] = getScale(color.color && color.color, 10).reverse();
     for (let i in scale) {
       newPalette.colors[levels[i]].push({
         name: `${color.name} ${levels[i]}`,

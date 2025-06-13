@@ -5,13 +5,13 @@ import { Color } from "../../types/Colors";
 import { clsx } from "../../utils/common";
 const ColorBox = ({ color }: { color: Color }) => {
   const [copied, setCopied] = useState<boolean>(false);
-  const { color: colorValue, name } = color;
+  const { name, id, hex } = color;
   return (
     <div
-      style={{ backgroundColor: colorValue }}
+      style={{ backgroundColor: hex }}
       className="ColorBox"
       onClick={() => {
-        copy(color.color);
+        copy(hex);
         setCopied(true);
         setTimeout(() => {
           setCopied(false);
@@ -20,11 +20,11 @@ const ColorBox = ({ color }: { color: Color }) => {
     >
       <div
         className={clsx(["copied-overlay", copied && "show"])}
-        style={{ background: colorValue }}
+        style={{ background: hex }}
       />
       <div className={clsx(["copy-message", copied && "show"])}>
         <h1>copied!</h1>
-        <p>{colorValue}</p>
+        <p>{hex}</p>
       </div>
       <div className="copy-container">
         <div className="box-content">
