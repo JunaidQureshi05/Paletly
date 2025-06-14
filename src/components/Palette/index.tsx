@@ -2,8 +2,6 @@ import React, { useState } from "react";
 
 import "./Palette.css";
 import { ColorFormat, GeneratedPallete } from "../../types/Colors";
-import Slider from "rc-slider";
-import "rc-slider/assets/index.css";
 import ColorBox from "../ColorBox";
 import Navbar from "../Navbar";
 

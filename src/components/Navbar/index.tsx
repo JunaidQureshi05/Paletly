@@ -1,8 +1,16 @@
-import Slider from "rc-slider";
 import "./Navbar.css";
-import { MenuItem, Select } from "@mui/material";
-import { ChangeEvent } from "react";
+import {
+  IconButton,
+  MenuItem,
+  Select,
+  SelectChangeEvent,
+  Slide,
+  Slider,
+  Snackbar,
+} from "@mui/material";
 import { ColorFormat } from "../../types/Colors";
+import { useState } from "react";
+import CloseIcon from "@mui/icons-material/Close";
 
 const Navbar = ({
   level,
@@ -15,6 +23,10 @@ const Navbar = ({
   colorFormat: ColorFormat;
   setColorFormat: (val: ColorFormat) => void;
 }) => {
+  const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
+  function closeSnackbar(): void {
+    setShowSnackbar(false);
+  }
   return (
     <header className="Navbar">
       <div className="logo">
@@ -24,20 +36,25 @@ const Navbar = ({
         <span>Level: {level}</span>
         <div className="slider">
           <Slider
+            size="medium"
             defaultValue={level}
+            onChange={(e: Event, newValue: number | number[]) => {
+              setLevel(newValue as number);
+            }}
             min={100}
             max={900}
             step={100}
-            onChangeComplete={(val: number | number[]) => {
-              setLevel(val as number);
-            }}
+            aria-label="Medium"
+            valueLabelDisplay="off"
+            color="success"
           />
         </div>
       </div>
       <div className="select-container">
         <Select
-          onChange={(e) => {
+          onChange={(e: SelectChangeEvent) => {
             setColorFormat(e.target.value as ColorFormat);
+            setShowSnackbar(true);
           }}
           variant="standard"
           sx={{
@@ -60,6 +77,23 @@ const Navbar = ({
           <MenuItem value={"rgba"}>RGBA - rgb(255,255,255,1.0)</MenuItem>
         </Select>
       </div>
+      <Snackbar
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+        open={showSnackbar}
+        autoHideDuration={1000}
+        onClose={closeSnackbar}
+        message={<span>Format changed !</span>}
+        action={
+          <IconButton
+            onClick={closeSnackbar}
+            color="inherit"
+            aria-label="close"
+            size="small"
+          >
+            <CloseIcon fontSize="small" aria-label="close" />
+          </IconButton>
+        }
+      />
     </header>
   );
 };
