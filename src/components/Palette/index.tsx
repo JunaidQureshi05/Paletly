@@ -8,7 +8,7 @@ import Navbar from "../Navbar";
 const Palette = ({ palette }: { palette: GeneratedPallete }) => {
   const [level, setLevel] = useState<number>(500);
   const [colorFormat, setColorFormat] = useState<ColorFormat>(ColorFormat.HEX);
-
+  const { paletteName, emoji, colors } = palette;
   return (
     <div className="Palette">
       {/* Navbar goes here */}
@@ -20,11 +20,15 @@ const Palette = ({ palette }: { palette: GeneratedPallete }) => {
       />
 
       <div className="Palette-colors">
-        {palette.colors[level].map((color) => (
+        {colors[level].map((color) => (
           <ColorBox color={color} colorFormat={colorFormat} />
         ))}
       </div>
-      {/* Footer goes here */}
+      <footer className="Palette-footer">
+        {" "}
+        {paletteName}Add commentMore actions
+        <span className="emoji">{emoji}</span>
+      </footer>
     </div>
   );
 };
