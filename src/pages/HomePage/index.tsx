@@ -7,7 +7,7 @@ import { withStyles } from "@mui/styles";
 const styles = {
   root: {
     backgroundColor: "blue",
-    height: "100%",
+    height: "100vh",
     display: "flex",
     alignItems: "flex-start",
     justifyContent: "center",
@@ -48,6 +48,7 @@ const HomePage = (props: any) => {
                 name={palette.paletteName}
                 key={palette.id}
                 emoji={palette.emoji}
+                colors={palette.colors}
               />
             </Link>
           ))}
