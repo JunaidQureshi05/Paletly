@@ -1,22 +1,48 @@
+// MiniPalette.tsx
 import React from "react";
-import "./MiniPalette.css";
 import { withStyles } from "@mui/styles";
-import { style } from "@mui/system";
+
 const styles = {
-  main: {
-    backgroundColor: "purple",
-    border: "3px solid teal",
+  root: {
+    backgroundColor: "white",
+    borderRadius: "5px",
+    padding: "0.5rem",
+    position: "relative" as const,
+    border: "1px solid black",
+    "& hover": {
+      cursor: "pointer",
+    },
+  },
+  colors: {
+    backgroundColor: "grey",
+  },
+  title: {
+    display: "flex",
+    justifyContent: "space-between",
+    alignItem: "center",
+    margin: "0",
+    color: "black",
+    padding: "0.8rem",
+    fontSize: "1rem",
+    position: "relative" as const,
+  },
+  emoji: {
+    marginLeft: "0.5rem",
+    fontSize: "1.5rem",
   },
 };
 
-const MiniPallete = (props: any) => {
-  const { classes } = props;
-  console.log(">>>", "Iam here", props);
+const MiniPalette = (props: any) => {
+  const { classes, paletteName, emoji } = props;
+
   return (
-    <div className={classes.main}>
-      <h1>Mini Palette</h1>
+    <div className={classes.root}>
+      <div className={classes.colors}></div>
+      <h5 className={classes.title}>
+        {paletteName} <span>{emoji}</span>
+      </h5>
     </div>
   );
 };
 
-export default withStyles(styles)(MiniPallete);
+export default withStyles(styles)(MiniPalette);
