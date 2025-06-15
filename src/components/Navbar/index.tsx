@@ -11,6 +11,7 @@ import {
 import { ColorFormat } from "../../types/Colors";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
+import { Link } from "react-router";
 
 const Navbar = ({
   level,
@@ -30,7 +31,7 @@ const Navbar = ({
   return (
     <header className="Navbar">
       <div className="logo">
-        <a href="#">Color Picker</a>
+        <Link to={{ pathname: "/" }}>Color Picker</Link>
       </div>
       <div className="slider-container">
         <span>Level: {level}</span>
