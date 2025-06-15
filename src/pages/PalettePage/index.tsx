@@ -15,7 +15,7 @@ const PalettePage = () => {
   const [level, setLevel] = useState<number>(500);
   const [colorFormat, setColorFormat] = useState<ColorFormat>(ColorFormat.HEX);
   const { paletteName, emoji, colors } = generatedPalette;
-
+  const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
   return (
     <div className="Palette">
       {/* Navbar goes here */}
@@ -24,6 +24,8 @@ const PalettePage = () => {
         setLevel={setLevel}
         colorFormat={colorFormat}
         setColorFormat={setColorFormat}
+        isSoundOn={isSoundOn}
+        setIsSoundOn={setIsSoundOn}
       />
 
       <div className="Palette-colors">

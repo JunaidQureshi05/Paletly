@@ -6,41 +6,40 @@ const styles = {
   root: {
     backgroundColor: "white",
     borderRadius: "5px",
-    padding: "0.5rem",
-    position: "relative" as const,
     border: "1px solid black",
+    padding: "0.5rem",
+    position: "relative",
     "& hover": {
       cursor: "pointer",
     },
-  },
-  colors: {
-    backgroundColor: "grey",
-  },
+  } as const,
+  color: { backgroundColor: "grey" } as const,
   title: {
     display: "flex",
     justifyContent: "space-between",
-    alignItem: "center",
+    alignItems: "center",
     margin: "0",
     color: "black",
-    padding: "0.8rem",
+    paddingTop: "0.5rem",
     fontSize: "1rem",
-    position: "relative" as const,
-  },
-  emoji: {
-    marginLeft: "0.5rem",
-    fontSize: "1.5rem",
-  },
+    position: "relative",
+
+    width: "100%",
+  } as const,
+  emoji: {} as const,
 };
 
 const MiniPalette = (props: any) => {
-  const { classes, paletteName, emoji } = props;
+  const { classes, name, emoji } = props;
 
   return (
     <div className={classes.root}>
-      <div className={classes.colors}></div>
-      <h5 className={classes.title}>
-        {paletteName} <span>{emoji}</span>
-      </h5>
+      <div className={classes.color}></div>
+      <div className={classes.title}>
+        <h5 className={classes.title}>
+          {name} <span className={classes.emoji}>{emoji}</span>
+        </h5>
+      </div>
     </div>
   );
 };

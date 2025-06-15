@@ -12,17 +12,22 @@ import { ColorFormat } from "../../types/Colors";
 import { useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router";
+import { VolumeOff, VolumeUp } from "@mui/icons-material";
 
 const Navbar = ({
   level,
   setLevel,
   colorFormat,
   setColorFormat,
+  isSoundOn,
+  setIsSoundOn,
 }: {
   level: number;
   setLevel: (val: number) => void;
   colorFormat: ColorFormat;
   setColorFormat: (val: ColorFormat) => void;
+  setIsSoundOn: (val: boolean) => void;
+  isSoundOn: boolean;
 }) => {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   function closeSnackbar(): void {
@@ -31,7 +36,7 @@ const Navbar = ({
   return (
     <header className="Navbar">
       <div className="logo">
-        <Link to={{ pathname: "/" }}>Color Picker</Link>
+        <Link to={{ pathname: "/" }}>Paletly</Link>
       </div>
       <div className="slider-container">
         <span>Level: {level}</span>
@@ -50,6 +55,11 @@ const Navbar = ({
             color="success"
           />
         </div>
+      </div>
+      <div className="Sound-container">
+        <span onClick={() => setIsSoundOn(!isSoundOn)} className="Sound-icon">
+          {isSoundOn ? <VolumeUp /> : <VolumeOff />}
+        </span>
       </div>
       <div className="select-container">
         <Select

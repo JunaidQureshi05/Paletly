@@ -1,18 +1,24 @@
 import React from "react";
-import palettes from "../../seedColor";
+import seedColor from "../../seedColor";
 import { Link } from "react-router";
-import "./HomePage.css";
-import MiniPalete from "../../components/MiniPalette";
 import MiniPalette from "../../components/MiniPalette";
-const Home = () => {
+const HomePage = () => {
   return (
     <div>
-      <MiniPalete />
-      {palettes.map((item) => (
-        <MiniPalette {...item} />
-      ))}
+      <h1>Paletly</h1>
+      <div>
+        {seedColor.map((palette) => (
+          <Link to={{ pathname: `/palette/${palette.id}` }} key={palette.id}>
+            <MiniPalette
+              name={palette.paletteName}
+              key={palette.id}
+              emoji={palette.emoji}
+            />
+          </Link>
+        ))}
+      </div>
     </div>
   );
 };
 
-export default Home;
+export default HomePage;
