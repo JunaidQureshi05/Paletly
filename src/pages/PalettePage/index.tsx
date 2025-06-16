@@ -12,7 +12,7 @@ const PalettePage = () => {
   const { id } = useParams();
   const palette: Palette = seedColor.find((item) => item.id === id)!;
   const generatedPalette: GeneratedPallete = generatePalette(palette);
-  const [level, setLevel] = useState<number>(500);
+  const [level, setLevel] = useState<number>(700);
   const [colorFormat, setColorFormat] = useState<ColorFormat>(ColorFormat.HEX);
   const { paletteName, emoji, colors } = generatedPalette;
   const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
