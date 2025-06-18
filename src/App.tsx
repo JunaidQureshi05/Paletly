@@ -1,17 +1,25 @@
-import React from "react";
-import logo from "./logo.svg";
+import React, { useContext, useEffect, useRef } from "react";
 import "./App.css";
 import PalettePage from "./pages/PalettePage";
-import seedColor from "./seedColor";
-import { generatePalette } from "./utils/color";
 import { Route, Routes } from "react-router";
 import HomePage from "./pages/HomePage";
+import { configContext } from "./context/configs";
 function App() {
+  const { copySoundRef } = useContext(configContext);
+
   return (
-    <Routes>
-      <Route path="/" element={<HomePage />} />
-      <Route path="/palette/:id" element={<PalettePage />} />
-    </Routes>
+    <React.Fragment>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/palette/:id" element={<PalettePage />} />
+      </Routes>
+      <audio
+        src="/copy-sound.wav"
+        id="copy-audio"
+        ref={copySoundRef}
+        controls
+      />
+    </React.Fragment>
   );
 }
 

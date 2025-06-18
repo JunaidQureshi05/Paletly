@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import "./ColorBox.css";
 import copy from "copy-to-clipboard";
 import { Color, ColorFormat } from "../../types/Colors";
 import { clsx } from "../../utils/common";
+import { configContext } from "../../context/configs";
 const ColorBox = ({
   color,
   colorFormat,
@@ -13,12 +14,15 @@ const ColorBox = ({
   const [copied, setCopied] = useState<boolean>(false);
   const { name, id, hex } = color;
   let value = color[colorFormat];
+
+  const { playCopySound, isCopySoundPlaying } = useContext(configContext);
   return (
     <div
       style={{ backgroundColor: hex }}
       className="ColorBox"
       onClick={() => {
         copy(value);
+        playCopySound();
         setCopied(true);
         setTimeout(() => {
           setCopied(false);

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 
 import "./PalettePage.css";
 import { ColorFormat, GeneratedPallete, Palette } from "../../types/Colors";
@@ -7,6 +7,7 @@ import Navbar from "../../components/Navbar";
 import seedColor from "../../seedColor";
 import { useParams } from "react-router";
 import { generatePalette } from "../../utils/color";
+import { configContext } from "../../context/configs";
 
 const PalettePage = () => {
   const { id } = useParams();
@@ -15,7 +16,6 @@ const PalettePage = () => {
   const [level, setLevel] = useState<number>(700);
   const [colorFormat, setColorFormat] = useState<ColorFormat>(ColorFormat.HEX);
   const { paletteName, emoji, colors } = generatedPalette;
-  const [isSoundOn, setIsSoundOn] = useState<boolean>(true);
   return (
     <div className="Palette">
       {/* Navbar goes here */}
@@ -24,8 +24,6 @@ const PalettePage = () => {
         setLevel={setLevel}
         colorFormat={colorFormat}
         setColorFormat={setColorFormat}
-        isSoundOn={isSoundOn}
-        setIsSoundOn={setIsSoundOn}
       />
 
       <div className="Palette-colors">

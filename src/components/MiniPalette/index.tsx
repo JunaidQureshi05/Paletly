@@ -14,7 +14,7 @@ const styles = {
     },
   } as const,
   color: {
-    backgroundColor: "#dae1e4",
+    backgroundColor: "#dae1e4   ",
     height: "150px",
     width: "100%",
     borderRadius: "5px",

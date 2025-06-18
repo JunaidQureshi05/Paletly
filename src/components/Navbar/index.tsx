@@ -9,30 +9,29 @@ import {
   Snackbar,
 } from "@mui/material";
 import { ColorFormat } from "../../types/Colors";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router";
 import { VolumeOff, VolumeUp } from "@mui/icons-material";
+import { configContext } from "../../context/configs";
 
 const Navbar = ({
   level,
   setLevel,
   colorFormat,
   setColorFormat,
-  isSoundOn,
-  setIsSoundOn,
 }: {
   level: number;
   setLevel: (val: number) => void;
   colorFormat: ColorFormat;
   setColorFormat: (val: ColorFormat) => void;
-  setIsSoundOn: (val: boolean) => void;
-  isSoundOn: boolean;
 }) => {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   function closeSnackbar(): void {
     setShowSnackbar(false);
   }
+  const { isCopySoundOn, setIsCopySoundOn } = useContext(configContext);
+
   return (
     <header className="Navbar">
       <div className="logo">
@@ -57,8 +56,11 @@ const Navbar = ({
         </div>
       </div>
       <div className="Sound-container">
-        <span onClick={() => setIsSoundOn(!isSoundOn)} className="Sound-icon">
-          {isSoundOn ? <VolumeUp /> : <VolumeOff />}
+        <span
+          onClick={() => setIsCopySoundOn(!isCopySoundOn)}
+          className="Sound-icon"
+        >
+          {isCopySoundOn ? <VolumeUp /> : <VolumeOff />}
         </span>
       </div>
       <div className="select-container">
