@@ -1,5 +1,6 @@
 import chroma from "chroma-js";
-import { GeneratedPallete, Palette } from "../types/Colors";
+import { Color, GeneratedPallete, Palette } from "../types/Colors";
+import seedColor from "../seedColor";
 
 const levels: number[] = [50, 100, 200, 300, 400, 500, 600, 700, 800, 900];
 
@@ -26,6 +27,7 @@ export function generatePalette(starterPalette: Palette): GeneratedPallete {
       });
     }
   }
+  console.log("1.", newPalette);
   return newPalette;
 }
 
@@ -37,3 +39,45 @@ function getRange(hexColor: string) {
 function getScale(hexColor: string, noOfColors: number): string[] {
   return chroma.scale(getRange(hexColor)).mode("lab").colors(noOfColors);
 }
+
+export const findColorPallete = (id: string | number): Palette | undefined => {
+  return seedColor.find((item) => item.id === id);
+};
+
+export const findColorShades = (
+  shadeName: string,
+  colors: { [key: string]: Color[] }
+) => {
+  return colors[shadeName];
+};
+export function gatherAllColors(palette: GeneratedPallete) {
+  debugger;
+  const colors: { [key: string]: Color[] } = {};
+  let shades = palette.colors;
+  for (let key in shades) {
+    shades[key].forEach((color) => {
+      if (colors[color.id]) {
+        colors[color.id] = colors[color.id].concat(color);
+      } else {
+        colors[color.id] = [color];
+      }
+    });
+  }
+
+  return colors;
+}
+
+const compose =
+  (...fns: Function[]) =>
+  (initialValue: any) =>
+    fns.reduceRight((acc, fn) => fn(acc), initialValue);
+
+export const getShadesOfColor = (id: string, colorId: string) => {
+  const fn = compose(
+    findColorShades.bind(this, colorId),
+    gatherAllColors,
+    generatePalette,
+    findColorPallete
+  );
+  return fn(id);
+};

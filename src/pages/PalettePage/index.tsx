@@ -6,12 +6,12 @@ import ColorBox from "../../components/ColorBox";
 import Navbar from "../../components/Navbar";
 import seedColor from "../../seedColor";
 import { useParams } from "react-router";
-import { generatePalette } from "../../utils/color";
+import { findColorPallete, generatePalette } from "../../utils/color";
 import { configContext } from "../../context/configs";
 
 const PalettePage = () => {
   const { id } = useParams();
-  const palette: Palette = seedColor.find((item) => item.id === id)!;
+  const palette: Palette = findColorPallete(id as string)!;
   const generatedPalette: GeneratedPallete = generatePalette(palette);
   const [level, setLevel] = useState<number>(700);
   const [colorFormat, setColorFormat] = useState<ColorFormat>(ColorFormat.HEX);

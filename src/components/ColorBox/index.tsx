@@ -4,6 +4,7 @@ import copy from "copy-to-clipboard";
 import { Color, ColorFormat } from "../../types/Colors";
 import { clsx } from "../../utils/common";
 import { configContext } from "../../context/configs";
+import { Link, useLocation } from "react-router";
 const ColorBox = ({
   color,
   colorFormat,
@@ -11,17 +12,20 @@ const ColorBox = ({
   color: Color;
   colorFormat: ColorFormat;
 }) => {
+  console.log(color);
   const [copied, setCopied] = useState<boolean>(false);
   const { name, id, hex } = color;
   let value = color[colorFormat];
 
   const { playCopySound, isCopySoundPlaying } = useContext(configContext);
+  const location = useLocation();
   return (
     <div
       style={{ backgroundColor: hex }}
       className="ColorBox"
-      onClick={() => {
-        copy(value);
+      id="main-div"
+      onClick={(e: any) => {
+        console.log("inside main click function");
         playCopySound();
         setCopied(true);
         setTimeout(() => {
@@ -32,8 +36,16 @@ const ColorBox = ({
       <div
         className={clsx(["copied-overlay", copied && "show"])}
         style={{ background: hex }}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
       />
-      <div className={clsx(["copy-message", copied && "show"])}>
+      <div
+        className={clsx(["copy-message", copied && "show"])}
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
         <h1>copied!</h1>
         <p>{value}</p>
       </div>
@@ -43,7 +55,15 @@ const ColorBox = ({
         </div>
         <button className="copy-button">Copy</button>
       </div>
-      <span className="see-more">More</span>
+      <Link
+        to={{ pathname: `${location.pathname}/${color.id}` }}
+        className="see-more"
+        onClick={(e) => {
+          e.stopPropagation();
+        }}
+      >
+        More
+      </Link>
     </div>
   );
 };
