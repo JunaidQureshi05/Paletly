@@ -1,25 +1,25 @@
 // MiniPalette.tsx
 import React from "react";
-import { withStyles } from "@mui/styles";
+import { createStyles, withStyles, WithStyles } from "@mui/styles";
 
-const styles = {
+const styles = createStyles({
   root: {
     backgroundColor: "white",
     borderRadius: "5px",
     border: "1px solid black",
     padding: "0.5rem",
     position: "relative",
-    "& hover": {
+    "&:hover": {
       cursor: "pointer",
     },
-  } as const,
+  },
   color: {
-    backgroundColor: "#dae1e4   ",
+    backgroundColor: "#dae1e4",
     height: "150px",
     width: "100%",
     borderRadius: "5px",
     overflow: "hidden",
-  } as const,
+  },
   title: {
     display: "flex",
     justifyContent: "space-between",
@@ -29,13 +29,12 @@ const styles = {
     paddingTop: "0.5rem",
     fontSize: "1rem",
     position: "relative",
-
     width: "100%",
-  } as const,
+  },
   emoji: {
     marginLeft: "0.5rem",
     fontSize: "1.5rem",
-  } as const,
+  },
   miniColor: {
     height: "25%",
     width: "20%",
@@ -43,25 +42,38 @@ const styles = {
     margin: "0 auto",
     position: "relative",
     marginBottom: "-3.5px",
-  } as const,
+  },
+  titleText: {
+    margin: "0px",
+  },
+});
+
+type Color = {
+  name: string;
+  color: string;
 };
 
-const MiniPalette = (props: any) => {
-  const { classes, name, emoji, colors } = props;
-  const miniColorBoxes = colors.map((color: any) => (
+type MiniPaletteProps = {
+  name: string;
+  emoji: string;
+  colors: Color[];
+} & WithStyles<typeof styles>;
+
+const MiniPalette = ({ classes, name, emoji, colors }: MiniPaletteProps) => {
+  const miniColorBoxes = colors.map((color) => (
     <div
       className={classes.miniColor}
       style={{ backgroundColor: color.color }}
       key={color.name}
     />
   ));
+
   return (
     <div className={classes.root}>
       <div className={classes.color}>{miniColorBoxes}</div>
       <div className={classes.title}>
-        <h5 className={classes.title}>
-          {name} <span className={classes.emoji}>{emoji}</span>
-        </h5>
+        <h5 className={classes.titleText}>{name}</h5>
+        <span className={classes.emoji}>{emoji}</span>
       </div>
     </div>
   );
