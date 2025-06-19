@@ -1,11 +1,13 @@
 .Palette {
   height: 100vh;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
 }
 .Palette-colors {
   flex: 1;
+  display: flex;
+  flex-wrap: wrap;
+  overflow: scroll;
 }
 
 .slider {

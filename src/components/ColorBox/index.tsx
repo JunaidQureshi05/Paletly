@@ -14,12 +14,11 @@ const ColorBox = ({
   colorFormat: ColorFormat;
   isColorShade?: boolean;
 }) => {
-  console.log(color);
   const [copied, setCopied] = useState<boolean>(false);
-  const { name, id, hex } = color;
+  const { name, hex } = color;
   let value = color[colorFormat];
 
-  const { playCopySound, isCopySoundPlaying } = useContext(configContext);
+  const { playCopySound } = useContext(configContext);
   const location = useLocation();
   return (
     <div
@@ -27,11 +26,17 @@ const ColorBox = ({
       className="ColorBox"
       id="main-div"
       onClick={(e: any) => {
-        console.log("inside main click function");
         playCopySound();
         setCopied(true);
+        let paletteSection = window.document.querySelector(
+          ".Palette-colors"
+        ) as HTMLDivElement;
+        if (paletteSection) {
+          paletteSection.style.overflow = "hidden";
+        }
         setTimeout(() => {
           setCopied(false);
+          if (paletteSection) paletteSection.style.overflow = "auto";
         }, 1000);
       }}
     >

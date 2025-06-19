@@ -27,7 +27,6 @@ export function generatePalette(starterPalette: Palette): GeneratedPallete {
       });
     }
   }
-  console.log("1.", newPalette);
   return newPalette;
 }
 

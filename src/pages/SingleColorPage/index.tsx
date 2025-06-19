@@ -1,5 +1,5 @@
 import React from "react";
-import { useParams } from "react-router";
+import { Link, useParams } from "react-router";
 import {
   Color,
   ColorFormat,
@@ -32,7 +32,12 @@ const SingleColorPage = () => {
   return (
     <div className="Palette">
       <Navbar isSingleColorPage={true} />
-      <div className="Palette-colors">{colorBoxes}</div>
+      <div className="SingleColorPalette Palette-colors">
+        {colorBoxes}{" "}
+        <div className="go-back ColorBox">
+          <button className="back-button">Copy</button>
+        </div>
+      </div>
       <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
