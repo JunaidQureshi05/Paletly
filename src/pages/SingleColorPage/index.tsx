@@ -1,5 +1,5 @@
 import React from "react";
-import { Link, useParams } from "react-router";
+import { Link, useNavigate, useParams } from "react-router";
 import {
   Color,
   ColorFormat,
@@ -19,6 +19,11 @@ import PaletteFooter from "../../components/PaletteFooter";
 const SingleColorPage = () => {
   const { id, colorId } = useParams();
   let { paletteName, emoji } = findColorPallete(id as string)!;
+  const navigate = useNavigate();
+
+  const handleBack = () => {
+    navigate(-1); // goes back in history
+  };
 
   let colors: Color[] = getShadesOfColor(id as string, colorId as string);
   const colorBoxes = colors.map((color) => (
@@ -35,7 +40,9 @@ const SingleColorPage = () => {
       <div className="SingleColorPalette Palette-colors">
         {colorBoxes}{" "}
         <div className="go-back ColorBox">
-          <button className="back-button">Copy</button>
+          <button className="back-button" onClick={handleBack}>
+            Go Back
+          </button>
         </div>
       </div>
       <PaletteFooter paletteName={paletteName} emoji={emoji} />

@@ -4,7 +4,7 @@ import copy from "copy-to-clipboard";
 import { Color, ColorFormat } from "../../types/Colors";
 import { clsx } from "../../utils/common";
 import { configContext } from "../../context/configs";
-import { Link, useLocation } from "react-router";
+import { Link, useLocation, useNavigate } from "react-router";
 const ColorBox = ({
   color,
   colorFormat,

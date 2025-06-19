@@ -8,8 +8,7 @@
   /* overflow: hidden; */
 }
 
-.ColorBox:hover .copy-button,
-.ColorBox:hover .back-button {
+.ColorBox:hover .copy-button {
   opacity: 1;
 }
 
@@ -29,10 +28,12 @@
   color: black;
   text-transform: uppercase;
   border: none;
-  opacity: 0;
   text-decoration: none;
+  cursor: pointer;
 }
-
+.copy-button {
+  opacity: 0;
+}
 .box-content {
   position: absolute;
   padding: 10px;
