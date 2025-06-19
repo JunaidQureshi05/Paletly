@@ -13,18 +13,12 @@ const PalettePage = () => {
   const { id } = useParams();
   const palette: Palette = findColorPallete(id as string)!;
   const generatedPalette: GeneratedPallete = generatePalette(palette);
-  const [level, setLevel] = useState<number>(700);
-  const [colorFormat, setColorFormat] = useState<ColorFormat>(ColorFormat.HEX);
   const { paletteName, emoji, colors } = generatedPalette;
+  const { level, colorFormat } = useContext(configContext);
   return (
     <div className="Palette">
       {/* Navbar goes here */}
-      <Navbar
-        level={level}
-        setLevel={setLevel}
-        colorFormat={colorFormat}
-        setColorFormat={setColorFormat}
-      />
+      <Navbar />
 
       <div className="Palette-colors">
         {colors[level].map((color) => (

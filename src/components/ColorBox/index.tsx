@@ -8,9 +8,11 @@ import { Link, useLocation } from "react-router";
 const ColorBox = ({
   color,
   colorFormat,
+  isColorShade = false,
 }: {
   color: Color;
   colorFormat: ColorFormat;
+  isColorShade?: boolean;
 }) => {
   console.log(color);
   const [copied, setCopied] = useState<boolean>(false);
@@ -55,15 +57,17 @@ const ColorBox = ({
         </div>
         <button className="copy-button">Copy</button>
       </div>
-      <Link
-        to={{ pathname: `${location.pathname}/${color.id}` }}
-        className="see-more"
-        onClick={(e) => {
-          e.stopPropagation();
-        }}
-      >
-        More
-      </Link>
+      {!isColorShade && (
+        <Link
+          to={{ pathname: `${location.pathname}/${color.id}` }}
+          className="see-more"
+          onClick={(e) => {
+            e.stopPropagation();
+          }}
+        >
+          More
+        </Link>
+      )}
     </div>
   );
 };

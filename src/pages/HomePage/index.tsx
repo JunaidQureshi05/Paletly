@@ -3,6 +3,7 @@ import seedColor from "../../seedColor";
 import { Link } from "react-router";
 import MiniPalette from "../../components/MiniPalette";
 import { withStyles } from "@mui/styles";
+import Branding from "../../components/Branding";
 
 const styles = {
   root: {
@@ -24,6 +25,7 @@ const styles = {
     width: "100%",
     justifyContent: "space-between",
     color: "white",
+    margin: "16px 0px",
   } as const,
   palettes: {
     boxSizing: "border-box",
@@ -39,7 +41,7 @@ const HomePage = (props: any) => {
     <div className={classes.root}>
       <div className={classes.container}>
         <nav className={classes.nav}>
-          <h1>Paletly</h1>
+          <Branding />
         </nav>
         <div className={classes.palettes}>
           {seedColor.map((palette) => (

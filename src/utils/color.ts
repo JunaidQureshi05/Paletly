@@ -51,7 +51,6 @@ export const findColorShades = (
   return colors[shadeName];
 };
 export function gatherAllColors(palette: GeneratedPallete) {
-  debugger;
   const colors: { [key: string]: Color[] } = {};
   let shades = palette.colors;
   for (let key in shades) {

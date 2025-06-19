@@ -1,4 +1,5 @@
 import { createContext, JSX, useMemo, useRef, useState } from "react";
+import { ColorFormat } from "../types/Colors";
 
 type ContextType = {
   isCopySoundOn: boolean;
@@ -6,6 +7,10 @@ type ContextType = {
   playCopySound: () => void;
   isCopySoundPlaying: boolean;
   copySoundRef: React.Ref<HTMLAudioElement>;
+  level: number;
+  setLevel: (val: number) => void;
+  colorFormat: ColorFormat;
+  setColorFormat: (val: ColorFormat) => void;
 };
 
 export const configContext = createContext<ContextType>({
@@ -14,6 +19,10 @@ export const configContext = createContext<ContextType>({
   playCopySound: () => {},
   isCopySoundPlaying: false,
   copySoundRef: null,
+  level: 500,
+  setLevel: () => {},
+  colorFormat: ColorFormat.HEX,
+  setColorFormat: () => {},
 });
 
 function AppConfigContext({
@@ -23,6 +32,8 @@ function AppConfigContext({
 }): JSX.Element {
   const [isCopySoundOn, setIsCopySoundOn] = useState<boolean>(true);
   const [isCopySoundPlaying, setIsCopySoundPlaying] = useState<boolean>(false);
+  const [level, setLevel] = useState<number>(500);
+  const [colorFormat, setColorFormat] = useState<ColorFormat>(ColorFormat.HEX);
   const copySoundRef = useRef<HTMLAudioElement>(null);
 
   function playCopySound(): void {
@@ -41,6 +52,10 @@ function AppConfigContext({
     playCopySound,
     isCopySoundPlaying,
     copySoundRef,
+    level,
+    setLevel,
+    colorFormat,
+    setColorFormat,
   };
   return (
     <configContext.Provider value={value}>{children}</configContext.Provider>

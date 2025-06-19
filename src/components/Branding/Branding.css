@@ -1,0 +1,57 @@
+.container {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  letter-spacing: 1px;
+  font-weight: bold;
+
+  padding: 0 12px;
+  font-size: 22px;
+  font-family: inherit;
+}
+
+.circle {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  animation: waveBounce 0.8s infinite linear;
+  position: relative;
+  transform-origin: bottom center;
+}
+
+.circle.blue {
+  background-color: #6bcbef;
+  animation-delay: 0s;
+}
+
+.circle.green {
+  background-color: #6bff95;
+  animation-delay: 0.15s;
+}
+
+.circle.red {
+  background-color: #ff6b6b;
+  animation-delay: 0.3s;
+}
+
+.brand-name {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-left: 10px;
+  color: #333;
+}
+
+p {
+  padding: 0;
+  margin: 0;
+}
+
+/* Cool vertical wave bounce with slight scale */
+@keyframes waveBounce {
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}

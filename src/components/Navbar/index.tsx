@@ -14,47 +14,53 @@ import CloseIcon from "@mui/icons-material/Close";
 import { Link } from "react-router";
 import { VolumeOff, VolumeUp } from "@mui/icons-material";
 import { configContext } from "../../context/configs";
+import Branding from "../Branding";
 
 const Navbar = ({
-  level,
-  setLevel,
-  colorFormat,
-  setColorFormat,
+  isSingleColorPage = false,
 }: {
-  level: number;
-  setLevel: (val: number) => void;
-  colorFormat: ColorFormat;
-  setColorFormat: (val: ColorFormat) => void;
+  isSingleColorPage?: boolean;
 }) => {
   const [showSnackbar, setShowSnackbar] = useState<boolean>(false);
   function closeSnackbar(): void {
     setShowSnackbar(false);
   }
-  const { isCopySoundOn, setIsCopySoundOn } = useContext(configContext);
+  const {
+    isCopySoundOn,
+    setIsCopySoundOn,
+    colorFormat,
+    setColorFormat,
+    level,
+    setLevel,
+  } = useContext(configContext);
 
   return (
     <header className="Navbar">
       <div className="logo">
-        <Link to={{ pathname: "/" }}>Paletly</Link>
+        <Link to={{ pathname: "/" }}>
+          <Branding />
+        </Link>
       </div>
-      <div className="slider-container">
-        <span>Level: {level}</span>
-        <div className="slider">
-          <Slider
-            size="medium"
-            defaultValue={level}
-            onChange={(e: Event, newValue: number | number[]) => {
-              setLevel(newValue as number);
-            }}
-            min={100}
-            max={900}
-            step={100}
-            aria-label="Medium"
-            valueLabelDisplay="off"
-            color="success"
-          />
+      {!isSingleColorPage && (
+        <div className="slider-container">
+          <span>Level: {level}</span>
+          <div className="slider">
+            <Slider
+              size="medium"
+              defaultValue={level}
+              onChange={(e: Event, newValue: number | number[]) => {
+                setLevel(newValue as number);
+              }}
+              min={100}
+              max={900}
+              step={100}
+              aria-label="Medium"
+              valueLabelDisplay="off"
+              color="success"
+            />
+          </div>
         </div>
-      </div>
+      )}
       <div className="Sound-container">
         <span
           onClick={() => setIsCopySoundOn(!isCopySoundOn)}
