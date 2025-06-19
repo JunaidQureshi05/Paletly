@@ -8,6 +8,7 @@ import seedColor from "../../seedColor";
 import { useParams } from "react-router";
 import { findColorPallete, generatePalette } from "../../utils/color";
 import { configContext } from "../../context/configs";
+import PaletteFooter from "../../components/PaletteFooter";
 
 const PalettePage = () => {
   const { id } = useParams();
@@ -25,10 +26,7 @@ const PalettePage = () => {
           <ColorBox key={color.id} color={color} colorFormat={colorFormat} />
         ))}
       </div>
-      <footer className="Palette-footer">
-        {paletteName}Add commentMore actions
-        <span className="emoji">{emoji}</span>
-      </footer>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 };

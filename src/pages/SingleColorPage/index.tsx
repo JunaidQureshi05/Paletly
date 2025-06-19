@@ -14,9 +14,12 @@ import {
 } from "../../utils/color";
 import ColorBox from "../../components/ColorBox";
 import Navbar from "../../components/Navbar";
+import PaletteFooter from "../../components/PaletteFooter";
 
 const SingleColorPage = () => {
   const { id, colorId } = useParams();
+  let { paletteName, emoji } = findColorPallete(id as string)!;
+
   let colors: Color[] = getShadesOfColor(id as string, colorId as string);
   const colorBoxes = colors.map((color) => (
     <ColorBox
@@ -30,6 +33,7 @@ const SingleColorPage = () => {
     <div className="Palette">
       <Navbar isSingleColorPage={true} />
       <div className="Palette-colors">{colorBoxes}</div>
+      <PaletteFooter paletteName={paletteName} emoji={emoji} />
     </div>
   );
 };
