@@ -1,6 +1,6 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
+import { withStyles } from "@mui/styles";
 
-import "./PalettePage.css";
 import { ColorFormat, GeneratedPallete, Palette } from "../../types/Colors";
 import ColorBox from "../../components/ColorBox";
 import Navbar from "../../components/Navbar";
@@ -10,18 +10,31 @@ import { findColorPallete, generatePalette } from "../../utils/color";
 import { configContext } from "../../context/configs";
 import PaletteFooter from "../../components/PaletteFooter";
 
-const PalettePage = () => {
+const styles = {
+  Palette: {
+    height: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  } as const,
+  PaletteColors: {
+    flex: 1,
+    display: "flex",
+    flexWrap: "wrap",
+    overflow: "scroll",
+  } as const,
+};
+
+const PalettePage = ({ classes }: { classes: Record<string, string> }) => {
   const { id } = useParams();
   const palette: Palette = findColorPallete(id as string)!;
   const generatedPalette: GeneratedPallete = generatePalette(palette);
   const { paletteName, emoji, colors } = generatedPalette;
   const { level, colorFormat } = useContext(configContext);
-  return (
-    <div className="Palette">
-      {/* Navbar goes here */}
-      <Navbar />
 
-      <div className="Palette-colors">
+  return (
+    <div className={classes.Palette}>
+      <Navbar />
+      <div className={classes.PaletteColors}>
         {colors[level].map((color) => (
           <ColorBox key={color.id} color={color} colorFormat={colorFormat} />
         ))}
@@ -31,4 +44,4 @@ const PalettePage = () => {
   );
 };
 
-export default PalettePage;
+export default withStyles(styles)(PalettePage);

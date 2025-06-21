@@ -1,17 +1,7 @@
 import React from "react";
-import { Link, useNavigate, useParams } from "react-router";
-import {
-  Color,
-  ColorFormat,
-  GeneratedPallete,
-  Palette,
-} from "../../types/Colors";
-import {
-  findColorPallete,
-  gatherAllColors,
-  generatePalette,
-  getShadesOfColor,
-} from "../../utils/color";
+import { useNavigate, useParams } from "react-router";
+import { Color, ColorFormat } from "../../types/Colors";
+import { findColorPallete, getShadesOfColor } from "../../utils/color";
 import ColorBox from "../../components/ColorBox";
 import Navbar from "../../components/Navbar";
 import PaletteFooter from "../../components/PaletteFooter";
