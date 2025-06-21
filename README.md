@@ -25,7 +25,3 @@ _A sleek web application to explore color palettes and create your own custom co
 - 🎭 **Smooth page transitions** with fade-in animations
 - 🧩 **Drag colors** to arrange side-by-side comparisons
 - 🗑️ **Delete palettes** you no longer need
-
----
-
-<pre lang="markdown"><code>```text src/ ├── components/ # Reusable UI components (ColorBox, Navbar, MiniPalette, etc.) ├── utils/ # Utility functions (e.g., color generation, helpers) ├── pages/ # Page-level components (Palette view, Create new palette, etc.) ├── context/ # React Context providers for global state ├── seedColor.ts # Predefined seed colors ├── App.tsx # Main application wrapper ├── main.tsx # Entry point └── index.css # Global styles ```</code></pre>
